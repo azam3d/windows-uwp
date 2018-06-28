@@ -162,13 +162,13 @@ Note also that the page sets input focus to itself when it is loaded. Without th
 void MainPage::OnNavigatedTo(NavigationEventArgs^ e)
 {
     (void) e;    // Unused parameter
-    this->Loaded+=ref new RoutedEventHandler(this,&amp;MainPage::ProgrammaticFocus);
+    this->Loaded+=ref new RoutedEventHandler(this, &MainPage::ProgrammaticFocus);
 }
 void MainPage::ProgrammaticFocus(Object^ sender, RoutedEventArgs^ e) {
     this->Focus(Windows::UI::Xaml::FocusState::Programmatic);
 }
 
-void KeyboardSupport::MainPage::MediaButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void MainPage::MediaButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
     FrameworkElement^ fe = safe_cast<FrameworkElement^>(sender);
     if (fe->Name == "PlayButton") {DemoMovie->Play();}
@@ -177,19 +177,19 @@ void KeyboardSupport::MainPage::MediaButton_Click(Platform::Object^ sender, Wind
 }
 
 
-bool KeyboardSupport::MainPage::IsCtrlKeyPressed()
+bool MainPage::IsCtrlKeyPressed()
 {
     auto ctrlState = CoreWindow::GetForCurrentThread()->GetKeyState(VirtualKey::Control);
     return (ctrlState & CoreVirtualKeyStates::Down) == CoreVirtualKeyStates::Down;
 }
 
-void KeyboardSupport::MainPage::Grid_KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
+void MainPage::Grid_KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
     if (e->Key == VirtualKey::Control) isCtrlKeyPressed = true;
 }
 
 
-void KeyboardSupport::MainPage::Grid_KeyUp(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
+void MainPage::Grid_KeyUp(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
     if (IsCtrlKeyPressed()) {
         if (e->Key==VirtualKey::P) { DemoMovie->Play(); }
